@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Publication Tracking System</h1>
+  <p>Welcome to our tracking system!</p>
+  <h2>Dynamic content</h2>
+  <p>The Publication tracking system has the following record counts:</p>
+  <ul>
+    <li><strong>Topics:</strong> {{ num_topics }}</li>
+    <li><strong>Newspapers:</strong> {{ num_newspapers }}</li>
+    <li><strong>Redactors:</strong> {{ num_redactors }}</li>
+  </ul>
+{% endblock %}
