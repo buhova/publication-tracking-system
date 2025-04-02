@@ -4,12 +4,6 @@ from django.contrib.auth.admin import UserAdmin
 from publication.models import Topic, Redactor, Newspaper
 
 
-@admin.register(Topic)
-class TopicAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
-
-
 @admin.register(Redactor)
 class RedactorAdmin(admin.ModelAdmin):
     list_display = UserAdmin.list_display + ("years_of_experience",)
@@ -25,3 +19,6 @@ class NewspaperAdmin(admin.ModelAdmin):
     list_display = ("title", "topic", "published_date",)
     search_fields = ("title",)
     list_filter = ("topic",)
+
+
+admin.site.register(Topic)
