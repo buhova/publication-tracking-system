@@ -29,9 +29,15 @@ class Newspaper(models.Model):
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
     topic = models.ForeignKey(
-        Topic, on_delete=models.SET_NULL, null=True, blank=True, related_name="newspapers"
+        Topic,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="newspapers",
     )
-    redactor = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="newspapers")
+    redactor = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="newspapers"
+    )
 
     class Meta:
         ordering = ["-published_date"]
