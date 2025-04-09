@@ -14,7 +14,7 @@ def index(request):
         "num_redactors": Redactor.objects.count(),
     }
 
-    return render(request, "publication/index.html", context=context)
+    return render(request, "home/index.html", context=context)
 
 
 # class ManufacturerListView(LoginRequiredMixin, generic.ListView):
@@ -23,31 +23,32 @@ def index(request):
 #     template_name = "taxi/manufacturer_list.html"
 #     paginate_by = 5
 
+
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
-    template_name = "publication/topic_list.html"
+    template_name = "home/topic_list.html"
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
-    template_name = "publication/redactor_list.html"
+    template_name = "home/redactor_list.html"
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     context_object_name = "redactor_detail"
-    template_name = "publication/redactor_detail.html"
+    template_name = "home/redactor_detail.html"
 
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     context_object_name = "newspaper_list"
-    template_name = "publication/newspaper_list.html"
+    template_name = "home/newspaper_list.html"
 
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     context_object_name = "newspaper_detail"
-    template_name = "publication/newspaper_detail.html"
+    template_name = "home/newspaper_detail.html"
