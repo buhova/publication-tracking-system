@@ -17,4 +17,4 @@ urlpatterns = [
     path("newspapers/<int:pk>", NewspaperDetailView.as_view(), name="newspaper-detail"),
 ]
 
-app_name = "publication"
+app_name = "home"
