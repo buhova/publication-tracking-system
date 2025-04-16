@@ -15,6 +15,8 @@ urlpatterns = [
     path("redactor/<int:pk>", RedactorDetailView.as_view(), name="redactor-detail"),
     path("newspapers/", NewspaperListView.as_view(), name="newspaper-list"),
     path("newspapers/<int:pk>", NewspaperDetailView.as_view(), name="newspaper-detail"),
+    # Matches any html file
+    # re_path(r'^.*\.*', views.pages, name='pages'),
 ]
 
 app_name = "home"

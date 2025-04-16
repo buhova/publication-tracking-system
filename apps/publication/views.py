@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
-from publication.models import Topic, Redactor, Newspaper
+from apps.publication.models import Topic, Redactor, Newspaper
 
 
 def index(request):
@@ -52,3 +52,5 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     context_object_name = "newspaper_detail"
     template_name = "home/newspaper_detail.html"
+
+

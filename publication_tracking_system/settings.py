@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_forms",
     "crispy_bootstrap4",
-    "publication",
+    "apps.publication",
+    "apps.authentication",
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "publication.context_processors.cfg_assets_root",
+                "apps.publication.context_processors.cfg_assets_root",
             ],
         },
     },
