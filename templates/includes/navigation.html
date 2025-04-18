@@ -31,41 +31,62 @@
                   </a>
                 </li>
 
-                <li class="nav-item dropdown dropdown-hover mx-3 ms-lg-auto my-auto">
+                <!-- For desktop versions -->
+                <li class="nav-item dropdown dropdown-hover mx-3 ms-lg-auto my-auto d-none d-lg-block">
                   <a class="nav-link nav-link-icon ps-2 d-flex cursor-pointer align-items-center me-2">
                     <img src="{{ ASSETS_ROOT }}/img/profile-icon.svg" alt="profile-icon" class="icon icon-outline icon-xs ms-auto ms-md-2">
                   </a>
-{#                  {% url 'home:redactor-detail' pk=redactor.id %}#}
                   <div class="dropdown-menu dropdown-menu-animation ms-n3 p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
                     <div class="d-none d-lg-block">
-                      <a href="#" class="dropdown-item border-radius-md">
+                      {% if request.user.is_authenticated %}
+                        <a href="{{ user.get_absolute_url }}" class="dropdown-item border-radius-md">
                         <span>My profile</span>
-                      </a>
-                      <a href="/sign-in.html" class="btn btn-sm bg-gradient-danger mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
-                    </div>
-                    <div class="d-lg-none">
-                      <a href="#" class="dropdown-item border-radius-md">
+                        </a>
+
+                        <form method="post" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-sm bg-gradient-danger mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
+                            Logout
+                          </button>
+                        </form>
+                      {% else %}
+                        <a href="{% url 'login' %}" class="dropdown-item border-radius-md">
                         <span>My profile</span>
-                      </a>
-                      <a href="/sign-in.html" class="btn btn-sm bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
+                        </a>
+
+                        <a href="{% url 'login' %}" class="btn btn-sm bg-gradient-danger mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
+                          <span>Login</span>
+                        </a>
+                      {% endif %}
                     </div>
                   </div>
                 </li>
 
-                {% if request.user.is_authenticated %}
-                  <li class="nav-item ms-lg-auto">
-                    <a class="nav-link nav-link-icon me-2" 
-                      href="{% url 'logout' %}">
-                      <i class="fa fa-sign-out me-1"></i>
-                      <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign OUT">Logout</p>
+                <!-- For mobile versions -->
+                <li class="nav-item ms-lg-auto d-block d-lg-none mx-3">
+                  {% if request.user.is_authenticated %}
+                    <a href="{{ user.get_absolute_url }}" class="nav-link d-flex align-items-center text-md ps-2">
+                    <i class="material-icons opacity-6 me-2 text-md">person</i>
+                    <span>My profile</span>
                     </a>
-                  </li>          
-                {% endif %}
 
+                    <form method="post" action="{% url 'logout' %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-sm bg-gradient-danger mb-0 me-1 mt-2 mt-md-0 border-radius-md">
+                        Logout
+                      </button>
+                    </form>
+                  {% else %}
+                    <a href="{% url 'login' %}" class="nav-link d-flex align-items-center text-md ps-2">
+                    <i class="material-icons opacity-6 me-2 text-md">person</i>
+                    <span>My profile</span>
+                  </a>
+
+                    <a href="{% url 'login' %}" class="btn btn-sm bg-gradient-danger mb-0 me-1 mt-2 mt-md-0 border-radius-md">
+                      <span>Login</span>
+                    </a>
+                  {% endif %}
+                </li>
               </ul>
             </div>
           </div>
