@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Newspaper list{% endblock %}
+
+{% block content %}
+<header class="bg-gradient-info min-vh-50 d-flex align-items-center">
+  <div class="container text-white text-center mt-5">
+    <h1 class="text-white mb-3">Newspaper List</h1>
+    <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-light">
+      <i class="material-icons">add</i> Create New
+    </a>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {% if newspaper_list %}
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Topic</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Published Date</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redactors</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for newspaper in newspaper_list %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'home:newspaper-detail' pk=newspaper.id %}" class="text-dark font-weight-bold">
+                        {{ newspaper.title }}
+                      </a>
+                    </td>
+                    <td>{{ newspaper.topic }}</td>
+                    <td>{{ newspaper.published_date }}</td>
+                    <td>
+                      {% for red in newspaper.redactor.all %}
+                      {{ red }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="alert alert-info text-center" role="alert">
+            There are no newspapers.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
