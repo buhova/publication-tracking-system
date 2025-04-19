@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" href="{{ ASSETS_ROOT }}/assets/img/favicon.png">
 
   <title>
-    Django Material Kit 2 - {% block title %}{% endblock %} | AppSeed
+    {% block title %}{% endblock %}
   </title>
 
   <!--     Fonts and icons     -->
@@ -42,11 +42,21 @@
 
 <body class="{% block body_class %}{% endblock %} bg-gray-200">
 
-  {% block content %}{% endblock content %}
+  {% block navigation %}
+    {% include "includes/navigation.html" %}
+  {% endblock %}
 
-  {% include 'includes/footer.html' %}
 
-  {% include 'includes/scripts.html' %}
+  {% block content %}{% endblock %}
+
+  {% block pagination %}
+    {% include "includes/pagination.html" %}
+  {% endblock %}
+
+
+  {% include "includes/footer.html" %}
+
+  {% include "includes/scripts.html" %}
 
    <!-- Specific Page JS goes HERE  -->
    {% block javascripts %}{% endblock javascripts %}
