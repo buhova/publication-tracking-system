@@ -33,7 +33,6 @@ class NewspaperAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "topic",
-        "published_date",
     )
     search_fields = ("title",)
     list_filter = ("topic",)
