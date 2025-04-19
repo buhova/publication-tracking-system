@@ -43,13 +43,13 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
-    model = Redactor
+    model = Newspaper
     context_object_name = "newspaper_list"
     template_name = "home/newspaper_list.html"
 
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Redactor
+    model = Newspaper
     context_object_name = "newspaper_detail"
     template_name = "home/newspaper_detail.html"
 
