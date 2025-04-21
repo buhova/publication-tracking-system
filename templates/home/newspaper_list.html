@@ -42,6 +42,16 @@
                       {{ red }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </td>
+                  <td>
+                    <a href="{% url 'home:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning  mb-0">
+                      <i class="material-icons">update</i> Update
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'home:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-danger mb-0">
+                      <i class="material-icons">delete</i> Delete
+                    </a>
+                  </td>
                   </tr>
                 {% endfor %}
               </tbody>
