@@ -58,6 +58,25 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "redactor_list"
     template_name = "home/redactor_list.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        query = self.request.GET.get("query", "")
+        context["search_form"] = RedactorNameSearchForm(initial={"query": query})
+        return context
+
+    def get_queryset(self):
+        queryset = Redactor.objects.all()
+        form = RedactorNameSearchForm(self.request.GET)
+
+        if form.is_valid():
+            query = form.cleaned_data.get("query")
+            if query:
+                queryset = queryset.filter(
+                    Q(first_name__icontains=query) | Q(last_name__icontains=query)
+                )
+
+        return queryset
+
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
