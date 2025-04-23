@@ -22,10 +22,12 @@
             <table class="table align-items-center mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Topic</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Published Date</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redactors</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Title</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Topic</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Published Date</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Redactors</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Update</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -36,19 +38,19 @@
                         {{ newspaper.title }}
                       </a>
                     </td>
-                    <td>{{ newspaper.topic }}</td>
-                    <td>{{ newspaper.published_date }}</td>
-                    <td>
+                    <td class="text-center">{{ newspaper.topic }}</td>
+                    <td class="text-center">{{ newspaper.published_date }}</td>
+                    <td class="text-center">
                       {% for red in newspaper.redactor.all %}
                       {{ red }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </td>
-                  <td>
+                  <td class="text-center">
                     <a href="{% url 'home:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning  mb-0">
                       <i class="material-icons">update</i> Update
                     </a>
                   </td>
-                  <td>
+                  <td class="text-center">
                     <a href="{% url 'home:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-danger mb-0">
                       <i class="material-icons">delete</i> Delete
                     </a>
