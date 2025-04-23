@@ -3,7 +3,7 @@
 {% block title %}Newspaper list{% endblock %}
 
 {% block content %}
-<header class="bg-gradient-info min-vh-50 d-flex align-items-center">
+<header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-newspaper-list.jpg')">
   <div class="container text-white text-center mt-5">
     <h1 class="text-white mb-3">Newspaper List</h1>
     <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-light">
