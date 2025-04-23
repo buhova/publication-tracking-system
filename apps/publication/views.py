@@ -30,6 +30,27 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
     template_name = "home/topic_list.html"
+    paginate_by = 5
+
+
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Topic
+    form_class = TopicForm
+    template_name = "home/topic_form.html"
+    success_url = reverse_lazy("home:topic-list")
+
+
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Topic
+    form_class = TopicForm
+    template_name = "home/topic_form.html"
+    success_url = reverse_lazy("home:topic-list")
+
+
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Topic
+    template_name = "home/topic_confirm_delete.html"
+    success_url = reverse_lazy("home:topic-list")
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
