@@ -4,7 +4,7 @@
 <div class="container mt-5 pt-5">
   <div class="card text-center shadow-lg border-danger">
     <div class="card-body">
-      <h3 class="card-title text-danger">Delete newspaper?</h3>
+      <h3 class="card-title text-danger">Delete newspaper "{{ newspaper.title }}"?</h3>
       <p class="card-text">Are you sure you want to delete this newspaper? This action cannot be undone.</p>
       <form method="post">
         {% csrf_token %}
