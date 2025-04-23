@@ -1,0 +1,11 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Newspaper detail{% endblock %}
+
+{% block content %}
+  <h1>{{ newspaper.title }}</h1>
+  <p>{{ newspaper.topic }}</p>
+  <p>{{ newspaper.content }}</p>
+  <p>{{ newspaper.published_date }}</p>
+  <p>{{ newspaper.redactors }}</p>
+{% endblock %}
