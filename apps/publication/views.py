@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from apps.publication.forms import NewspaperForm
+from apps.publication.forms import NewspaperForm, TopicForm, RedactorNameSearchForm
 from apps.publication.models import Topic, Redactor, Newspaper
 
 
