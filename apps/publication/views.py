@@ -57,6 +57,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
     template_name = "home/redactor_list.html"
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
@@ -88,6 +89,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     context_object_name = "newspaper_list"
     template_name = "home/newspaper_list.html"
+    paginate_by = 5
 
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
