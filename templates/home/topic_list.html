@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Newspaper list{% endblock %}
+
+{% block content %}
+<header class="bg-gradient-primary min-vh-50 d-flex align-items-center">
+  <div class="container text-white text-center mt-5">
+    <h1 class="text-white mb-3">Topic List</h1>
+    <a href="{% url 'home:topic-create' %}" class="btn btn-outline-light">
+      <i class="material-icons">add</i> Create New
+    </a>
+  </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+  <section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {% if topic_list %}
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for topic in topic_list %}
+                  <tr>
+                    <td>{{ topic.name }}</td>
+                  <td>
+                    <a href="{% url 'home:topic-update' pk=topic.id %}" class="btn btn-outline-warning  mb-0">
+                      <i class="material-icons">update</i> Update
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'home:topic-delete' pk=topic.id %}" class="btn btn-outline-danger mb-0">
+                      <i class="material-icons">delete</i> Delete
+                    </a>
+                  </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="alert alert-info text-center" role="alert">
+            There are no topics.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% include "includes/pagination.html" %}
+</div>
+{% endblock %}
