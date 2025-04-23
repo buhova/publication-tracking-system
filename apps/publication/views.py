@@ -20,13 +20,6 @@ def index(request):
     return render(request, "home/index.html", context=context)
 
 
-# class ManufacturerListView(LoginRequiredMixin, generic.ListView):
-#     model = Manufacturer
-#     context_object_name = "manufacturer_list"
-#     template_name = "taxi/manufacturer_list.html"
-#     paginate_by = 5
-
-
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
