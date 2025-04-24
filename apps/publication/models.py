@@ -14,6 +14,18 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def random_badge_class(self):
+        colors = [
+            "bg-gradient-secondary",
+            "bg-gradient-success",
+            "bg-gradient-warning",
+            "bg-gradient-info",
+            "bg-gradient-dark",
+        ]
+        index = abs(hash(self.name)) % len(colors)
+        return colors[index]
+
 
 class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(blank=True, null=True)
