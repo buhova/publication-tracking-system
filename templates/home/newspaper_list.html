@@ -41,8 +41,8 @@
                     <td class="text-center">{{ newspaper.topic }}</td>
                     <td class="text-center">{{ newspaper.published_date }}</td>
                     <td class="text-center">
-                      {% for red in newspaper.redactor.all %}
-                      {{ red }}{% if not forloop.last %}, {% endif %}
+                      {% for redactor in newspaper.redactor.all %}
+                      {{ redactor }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </td>
                   <td class="text-center">
