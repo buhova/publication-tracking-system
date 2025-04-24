@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Header with Redactor Info -->
-<header class="bg-gradient-info min-vh-50 d-flex align-items-center">
+<header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-redactor-detail.jpg')">
   <div class="container text-white text-center mt-5">
     <h1 class="text-white mb-2">{{ redactor_detail.first_name }} {{ redactor_detail.last_name }}</h1>
     <p class="mb-0">{{ redactor_detail.email }}</p>
