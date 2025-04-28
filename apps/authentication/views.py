@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 from django.contrib import messages
+from django.db import transaction
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -83,9 +84,14 @@ def delete_user_view(request):
     user = request.user
 
     if request.method == "POST":
-        logout(request)
-        user.delete()
-        messages.success(request, "Ваш акаунт було успішно видалено.")
-        return redirect("home")
+        try:
+            with transaction.atomic():
+                logout(request)
+                user.delete()
+            messages.success(request, "Your account has been successfully deleted.")
+            return redirect("home:index")
+        except Exception as e:
+            messages.error(request, f"An error occurred while deleting your account: {e}")
+            return redirect("home:index")
 
     return render(request, "home/redactor_confirm_delete.html", {"user": user})
