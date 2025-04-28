@@ -96,17 +96,25 @@ class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     template_name = "home/newspaper_form.html"
-    success_url = reverse_lazy("home:newspaper-list")
+
+    def get_success_url(self):
+        return reverse_lazy("home:redactor-detail", kwargs={"pk": self.request.user.pk})
 
 
 class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = NewspaperForm
     template_name = "home/newspaper_form.html"
-    success_url = reverse_lazy("home:newspaper-list")
+
+    def get_success_url(self):
+        return reverse_lazy("home:redactor-detail", kwargs={"pk": self.request.user.pk})
+
 
 
 class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     template_name = "home/newspaper_confirm_delete.html"
-    success_url = reverse_lazy("home:newspaper-list")
+
+
+    def get_success_url(self):
+        return reverse_lazy("home:redactor-detail", kwargs={"pk": self.request.user.pk})
