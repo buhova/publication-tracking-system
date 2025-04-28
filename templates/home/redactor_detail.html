@@ -46,7 +46,7 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Published Date</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redactors</th>
                   {% if request.user == redactor_detail %}
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
                   {% endif %}
                 </tr>
@@ -69,7 +69,7 @@
                   {% if request.user == redactor_detail %}
                   <td>
                     <a href="{% url 'home:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning mb-0">
-                      <i class="material-icons">update</i> Update
+                      <i class="material-icons">edit</i> Edit
                     </a>
                   </td>
                   <td>
