@@ -72,9 +72,9 @@ def update_user_view(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            msg = "Профіль оновлено успішно."
+            msg = "Profile updated successfully."
         else:
-            msg = "Форма заповнена некоректно."
+            msg = "The form is filled out incorrectly."
 
     return render(request, "accounts/update_profile.html", {"form": form, "msg": msg})
 
