@@ -6,9 +6,6 @@
 <header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-newspaper-list.jpg')">
   <div class="container text-white text-center mt-5">
     <h1 class="text-white mb-3">Newspaper List</h1>
-    <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-light">
-      <i class="material-icons">add</i> Create New
-    </a>
   </div>
 </header>
 
@@ -40,8 +37,6 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Topic</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Published Date</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Redactors</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Update</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,16 +54,6 @@
                       {{ redactor }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     </td>
-                  <td class="text-center">
-                    <a href="{% url 'home:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning  mb-0">
-                      <i class="material-icons">update</i> Update
-                    </a>
-                  </td>
-                  <td class="text-center">
-                    <a href="{% url 'home:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-danger mb-0">
-                      <i class="material-icons">delete</i> Delete
-                    </a>
-                  </td>
                   </tr>
                 {% endfor %}
               </tbody>
