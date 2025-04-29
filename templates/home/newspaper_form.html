@@ -1,57 +1,92 @@
 {% extends "layouts/base.html" %}
-{% load static %}
+
+{% block title %}Create Newspaper{% endblock %}
 
 {% block content %}
-<main class="mt-5 pt-3">
-  <section class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
-          <div class="card shadow-lg">
-            <div class="card-header p-4 text-center bg-gradient-primary border-radius-lg">
-              <h4 class="mb-0 text-white">
-                {% if object %}
-                  Edit Newspaper
-                {% else %}
-                  Create Newspaper
-                {% endif %}
-              </h4>
-            </div>
+<section class="py-6 mt-7">
+  <div class="container my-auto">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12 mx-auto">
 
-            <div class="card-body p-4">
-              <form method="post" novalidate autocomplete="off" id="newspaper-form">
-                {% csrf_token %}
-
-                {% for field in form %}
-                  <div class="mb-4">
-                    <div class="input-group input-group-dynamic">
-                      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                      {{ field }}
-                    </div>
-                    {% if field.help_text %}
-                      <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% for error in field.errors %}
-                      <div class="text-danger small">{{ error }}</div>
-                    {% endfor %}
-                  </div>
-                {% endfor %}
-
-                <div class="d-grid">
-                  <button type="submit" class="btn bg-gradient-dark">Save Newspaper</button>
-                </div>
-              </form>
-
-              <div class="text-center mt-3">
-                <a href="{% url 'home:newspaper-list' %}" class="text-muted small">← Back to list</a>
-              </div>
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3">
+              <h4 class="text-white text-center mb-0">Create Newspaper</h4>
             </div>
           </div>
+
+          <div class="card-body">
+            <form method="post" role="form" class="text-start">
+              {% csrf_token %}
+
+              <!-- Title and Topic -->
+              <div class="row g-3">
+                <!-- Title -->
+                <div class="col-md-8 mt-0 d-flex align-items-end">
+                  <div class="input-group input-group-outline">
+                    <label for="id_title" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="id_title" required>
+                  </div>
+                </div>
+
+                <!-- Topic -->
+                <div class="col-md-4 mt-0">
+                  <div class="form-group">
+                    <label for="id_topic" class="form-label text-xxs">Topic</label>
+                    <select name="topic" id="id_topic" class="form-select form-select-sm">
+                      {% for topic in topics %}
+                        <option value="{{ topic.id }}">{{ topic.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="mb-4 mt-4">
+                <label for="id_content" class="form-label">Content</label>
+                <textarea name="content" id="id_content" rows="10"
+                          class="form-control border border-secondary border-opacity-25 rounded p-3"
+                          placeholder="Write your article here..." required></textarea>
+              </div>
+
+              <!-- Co-authors -->
+              <div class="mb-4">
+                <label class="form-label">Co-authors</label>
+                <div class="row">
+                  {% for redactor in redactors %}
+                    {% if redactor.first_name and redactor.last_name %}
+                      <div class="col-md-6">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="redactor" value="{{ redactor.id }}"
+                           id="coauthor{{ redactor.id }}"
+                           {% if redactor.id == request.user.id %}checked disabled{% endif %}>
+                          <label class="form-check-label" for="coauthor{{ redactor.id }}">
+                            {{ redactor.first_name }} {{ redactor.last_name }}
+                            {% if redactor.id == request.user.id %}(you){% endif %}
+                          </label>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+
+                <!-- Hidden input to pass the user's username
+                 to the form (since the user's checkbox is disabled) -->
+                <input type="hidden" name="redactor" value="{{ request.user.id }}">
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="text-end">
+                <button type="submit" class="btn bg-gradient-primary">Publish</button>
+              </div>
+
+            </form>
+          </div>
         </div>
+
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 {% endblock %}
-
-
