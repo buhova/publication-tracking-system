@@ -18,7 +18,14 @@
           <div class="col-lg-5 mx-auto">
             <div class="input-group input-group-dynamic mb-4">
               <span class="input-group-text"><i class="material-icons opacity-6 me-2 text-lg">search</i></span>
-              <input class="search-input form-control text-md" placeholder="Search" type="text" >
+              <input
+                class="search-input form-control text-md"
+                placeholder="Search"
+                type="text"
+                name="query"
+                value="{{ request.GET.query }}"
+              >
+
             </div>
             </div>
           </div>
