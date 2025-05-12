@@ -42,7 +42,7 @@
                         <ul class="list-group">
                         {% if request.user.is_authenticated %}
                           <li class="nav-item list-group-item border-0 p-0 dropdown dropdown-hover dropdown-subitem">
-                          <a href="{{ user.get_absolute_url }}" class="dropdown-item border-radius-md">
+                          <a href="{{ user.get_absolute_url }}" class="dropdown-item border-radius-md px-4 py-2">
                           <span>My profile</span>
                           </a>
                           </li>
@@ -50,20 +50,20 @@
                           <li class="nav-item list-group-item border-0 p-0 dropdown dropdown-hover dropdown-subitem">
                             <form method="post" action="{% url 'logout' %}">
                               {% csrf_token %}
-                              <button type="submit" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
+                              <button type="submit" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md px-4 py-2" >
                                 Logout
                               </button>
                             </form>
                           </li>
                         {% else %}
                           <li class="nav-item list-group-item border-0 p-0 dropdown dropdown-hover dropdown-subitem">
-                            <a href="{% url 'login' %}" class="dropdown-item border-radius-md">
+                            <a href="{% url 'login' %}" class="dropdown-item border-radius-md px-4 py-2">
                             <span>My profile</span>
                             </a>
                           </li>
 
                           <li class="nav-item list-group-item border-0 p-0 dropdown dropdown-hover dropdown-subitem">
-                            <a href="{% url 'login' %}" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md">
+                            <a href="{% url 'login' %}" class="btn btn-sm bg-gradient-primary mb-0 me-1 mt-2 mt-md-0 dropdown-item border-radius-md px-4 py-2">
                               <span>Login</span>
                             </a>
                           </li>
