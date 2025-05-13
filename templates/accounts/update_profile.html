@@ -30,8 +30,13 @@
                 </div>
               {% endfor %}
 
-              <div class="text-end">
-                <button type="submit" class="btn bg-gradient-primary">Save</button>
+              <div class="d-flex justify-content-end mt-4 gap-2">
+                <a href="{{ user.get_absolute_url }}" class="btn btn-secondary">
+                  Cancel
+                </a>
+                <button type="submit" class="btn bg-gradient-primary">
+                  <i class="material-icons align-middle me-1">save</i> Save Changes
+                </button>
               </div>
             </form>
 
