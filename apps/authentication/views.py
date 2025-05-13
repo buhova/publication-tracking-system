@@ -7,6 +7,8 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+
 from .forms import UserUpdateForm
 
 from .forms import LoginForm, SignUpForm
@@ -67,17 +69,14 @@ def register_user(request):
 def update_user_view(request):
     user = request.user
     form = UserUpdateForm(request.POST or None, instance=user)
-    msg = None
 
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            msg = "Profile updated successfully."
-        else:
-            msg = "The form is filled out incorrectly."
+            return redirect(reverse_lazy("home:redactor-detail", kwargs={"pk": user.pk}))
+        # Якщо форма неправильна — лишаємось на сторінці з помилками
 
-    return render(request, "accounts/update_profile.html", {"form": form, "msg": msg})
-
+    return render(request, "accounts/update_profile.html", {"form": form})
 
 @login_required
 def delete_user_view(request):

@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<section class="py-6 mt-7">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-6 col-12 mx-auto">
+
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3">
+              <h4 class="text-white text-center mb-0">Edit Profile</h4>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <form method="post" role="form" class="text-start">
+              {% csrf_token %}
+
+              {% for field in form %}
+                <div class="input-group input-group-outline is-filled mb-4">
+                  <label for="{{ field.id_for_label }}" class="form-label text-secondary">{{ field.label }}</label>
+                  {{ field }}
+                  {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors }}</div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <div class="text-end">
+                <button type="submit" class="btn bg-gradient-primary">Save</button>
+              </div>
+            </form>
+
+            {% if msg %}
+              <div class="alert alert-info mt-3">{{ msg }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
