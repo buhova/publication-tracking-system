@@ -1,6 +1,8 @@
 {% extends "layouts/base.html" %}
 
-{% block title %}Create Newspaper{% endblock %}
+{% block title %}
+  {{ form.instance.pk|yesno:"Edit,Create" }} Newspaper
+{% endblock %}
 
 {% block body_bg %}
   style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-newspaper-list.jpg');
@@ -18,7 +20,9 @@
         <div class="card z-index-0 fadeIn3 fadeInBottom">
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-primary shadow-primary border-radius-lg py-3">
-              <h4 class="text-white text-center mb-0">Create Newspaper</h4>
+              <h4 class="text-white text-center mb-0">
+                {{ form.instance.pk|yesno:"Edit,Create" }} Newspaper
+              </h4>
             </div>
           </div>
 
