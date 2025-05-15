@@ -103,8 +103,13 @@
               </div>
 
               <!-- Submit -->
-              <div class="text-end">
-                <button type="submit" class="btn bg-gradient-primary">Publish</button>
+              <div class="text-end d-flex justify-content-end mt-4 gap-2">
+                <a href="{{ user.get_absolute_url }}" class="btn btn-secondary">
+                  Cancel
+                </a>
+                <button type="submit" class="btn bg-gradient-primary">
+                  {{ form.instance.pk|yesno:"Update,Publish" }}
+                </button>
               </div>
 
             </form>
