@@ -9,6 +9,9 @@
     <a href="{% url 'home:topic-create' %}" class="btn btn-outline-light">
       <i class="material-icons">add</i> Create New
     </a>
+    <a href="{{ user.get_absolute_url }}" class="btn btn-outline-light mb-0">
+      <i class="material-icons">reply</i> Return to my profile
+    </a>
   </div>
 </header>
 
