@@ -1,6 +1,13 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 
+{% block body_bg %}
+  style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-topic-form.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;"
+{% endblock %}
+
 {% block content %}
 <main class="mt-5 pt-5">
   <div class="container">
