@@ -6,7 +6,7 @@
 <header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-topic-list.jpg')">
   <div class="container text-white text-center mt-5">
     <h1 class="text-white mb-3">Topic List</h1>
-    <a href="{% url 'home:topic-create' %}" class="btn btn-outline-light">
+    <a href="{% url 'home:topic-create' %}" class="btn btn-outline-light mb-0">
       <i class="material-icons">add</i> Create New
     </a>
     <a href="{{ user.get_absolute_url }}" class="btn btn-outline-light mb-0">
@@ -19,27 +19,27 @@
   <section class="py-5">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 mx-auto">
+      <div class="col-lg-5 mx-auto">
         {% if topic_list %}
           <div class="table-responsive">
             <table class="table align-items-center mb-0">
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Update</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-end">Update</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {% for topic in topic_list %}
                   <tr>
                     <td>{{ topic.name }}</td>
-                  <td>
+                  <td class="text-end align-middle">
                     <a href="{% url 'home:topic-update' pk=topic.id %}" class="btn btn-outline-warning  mb-0">
                       <i class="material-icons">update</i> Update
                     </a>
                   </td>
-                  <td>
+                  <td class="text-center align-middle">
                     <a href="{% url 'home:topic-delete' pk=topic.id %}" class="btn btn-outline-danger mb-0">
                       <i class="material-icons">delete</i> Delete
                     </a>
