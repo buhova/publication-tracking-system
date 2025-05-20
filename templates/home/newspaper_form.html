@@ -46,9 +46,9 @@
                 {% endif %}
 
               <!-- Title and Topic -->
-              <div class="row g-3">
+              <div class="row g-3 align-items-end">
                 <!-- Title -->
-                <div class="col-md-8 mt-0 d-flex align-items-end">
+                <div class="col-md-8 mt-0">
                   <div class="input-group input-group-outline {% if form.instance.title %}is-filled{% endif %}">
                     <label for="id_title" class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" id="id_title"
@@ -58,8 +58,8 @@
 
                 <!-- Topic -->
                 <div class="col-md-4">
-                  <label for="id_topic" class="form-label">Topic</label>
-                  <select name="topic" id="id_topic" class="form-select form-select-sm">
+                  <label for="id_topic" class="form-label"></label>
+                  <select name="topic" id="id_topic" class="form-select px-2">
                     {% for topic in topics %}
                       <option value="{{ topic.id }}"
                         {% if form.instance.topic and topic.id == form.instance.topic.id %}selected{% endif %}>
