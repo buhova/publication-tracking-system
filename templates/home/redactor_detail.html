@@ -31,8 +31,11 @@
       <div class="d-flex align-items-center mb-4 gap-4 ">
             {% if request.user == redactor_detail %}
               <h2>My newspapers</h2>
-              <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-info mb-0 align-items-center">
+              <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-success mb-0 align-items-center">
                 <i class="material-icons">add</i>Create new
+              </a>
+              <a href="{% url 'home:topic-list' %}" class="btn btn-outline-info mb-0 align-items-center">
+                <i class="material-icons">settings</i>Customize topics
               </a>
             {% endif %}
           </div>
