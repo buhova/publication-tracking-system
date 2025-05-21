@@ -11,7 +11,8 @@ class ModelTest(TestCase):
             first_name="FirstName",
             last_name="LastName",
             username="username",
-            password="my_secret_password"
+            password="my_secret_password",
+            years_of_experience=5,
         )
         self.newspaper = Newspaper.objects.create(
             title="Title",
