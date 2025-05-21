@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
@@ -28,7 +29,9 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    years_of_experience = models.IntegerField(blank=True, null=True)
+    years_of_experience = models.PositiveIntegerField(
+        blank=True, null=True, validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         ordering = ["last_name", "first_name"]
