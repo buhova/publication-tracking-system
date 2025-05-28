@@ -1,0 +1,126 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+  {{ form.instance.pk|yesno:"Edit,Create" }} Newspaper
+{% endblock %}
+
+{% block body_bg %}
+  style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-newspaper-list.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;"
+{% endblock %}
+
+{% block content %}
+<section class="py-6 mt-7">
+  <div class="container my-auto">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12 mx-auto">
+
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3">
+              <h4 class="text-white text-center mb-0">
+                {{ form.instance.pk|yesno:"Edit,Create" }} Newspaper
+              </h4>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <form method="post" role="form" class="text-start">
+              {% csrf_token %}
+                {% if form.errors %}
+                  <div class="alert text-danger">
+                    <strong>Error in form:</strong>
+                    <ul>
+                      {% for field in form %}
+                        {% for error in field.errors %}
+                          <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                      {% endfor %}
+                      {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+              <!-- Title and Topic -->
+              <div class="row g-3 align-items-end">
+                <!-- Title -->
+                <div class="col-md-8 mt-0">
+                  <div class="input-group input-group-outline {% if form.instance.title %}is-filled{% endif %}">
+                    <label for="id_title" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="id_title"
+                           value="{{ form.instance.title|default_if_none:'' }}" required>
+                  </div>
+                </div>
+
+                <!-- Topic -->
+                <div class="col-md-4">
+                  <label for="id_topic" class="form-label"></label>
+                  <select name="topic" id="id_topic" class="form-select px-2">
+                    {% for topic in topics %}
+                      <option value="{{ topic.id }}"
+                        {% if form.instance.topic and topic.id == form.instance.topic.id %}selected{% endif %}>
+                        {{ topic.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="mb-4 mt-4">
+                <label for="id_content" class="form-label">Content</label>
+                <textarea name="content" id="id_content" rows="10"
+                          class="form-control border border-secondary border-opacity-25 rounded p-3"
+                          required>{{ form.instance.content|default_if_none:'' }}</textarea>
+              </div>
+
+              <!-- Co-authors -->
+              <div class="mb-4">
+                <label class="form-label">Co-authors</label>
+                <div class="row">
+                  {% for redactor in redactors %}
+                    {% if redactor.first_name and redactor.last_name %}
+                      <div class="col-md-6">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="redactor" value="{{ redactor.id }}"
+                            id="coauthor{{ redactor.id }}"
+                            {% if redactor.id == request.user.id %}checked disabled{% endif %}
+                            {% if form.instance.pk and redactor in form.instance.redactor.all %}checked{% endif %}>
+                          <label class="form-check-label" for="coauthor{{ redactor.id }}">
+                            {{ redactor.first_name }} {{ redactor.last_name }}
+                            {% if redactor.id == request.user.id %}(you){% endif %}
+                          </label>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+
+                <!-- Hidden input to pass the user's username
+                 to the form (since the user's checkbox is disabled) -->
+                <input type="hidden" name="redactor" value="{{ request.user.id }}">
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="text-end d-flex justify-content-end mt-4 gap-2">
+                <a href="{{ user.get_absolute_url }}" class="btn btn-secondary">
+                  Cancel
+                </a>
+                <button type="submit" class="btn bg-gradient-primary">
+                  {{ form.instance.pk|yesno:"Update,Publish" }}
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

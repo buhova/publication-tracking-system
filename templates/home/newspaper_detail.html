@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{ newspaper_detail.title }}{% endblock %}
+
+{% block content %}
+<section class="py-7">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="display-4 text-dark fw-bold mb-4">{{ newspaper_detail.title }}</h1>
+
+        <!-- Redactors -->
+        <div class="mb-4">
+          <p class="text-secondary text-normal text-lg mb-0">
+            By
+            {% if newspaper_detail.redactor.all %}
+              {% for redactor in newspaper_detail.redactor.all %}
+                <a href="{% url 'home:redactor-detail' redactor.id %}" class="link-dark text-decoration-underline cursor-pointer fw-semibold">
+                  {{ redactor }}
+                </a>{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            {% else %}
+              <span class="text-muted">Unknown</span>
+            {% endif %}
+            <!-- Published Date -->
+            · {{ newspaper_detail.published_date|date:"M d, Y" }}
+          </p>
+        </div>
+
+        <!-- Topic -->
+        {% if newspaper_detail.topic %}
+            <div class="row text-center pb-3">
+              <div class="col-12 d-flex">
+                <span class="badge align-items-start {{ newspaper_detail.topic.random_badge_class }}">
+                  {{ newspaper_detail.topic }}
+                </span>
+              </div>
+            </div>
+        {% endif %}
+
+        <!-- Content -->
+        <div class="mb-5">
+          <article class="prose prose-lg max-w-none text-dark">
+            {{ newspaper_detail.content|linebreaks }}
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+{#  <script src="{{ ASSETS_ROOT }}/assets/js/tailwind.config" type="text/javascript"></script>#}
+{% endblock javascripts %}

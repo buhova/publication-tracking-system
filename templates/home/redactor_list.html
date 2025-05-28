@@ -1,0 +1,109 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Redactors list{% endblock %}
+
+{% block content %}
+<header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-redactor-list.jpg')">
+  <div class="container text-white text-center mt-5">
+    <h1 class="text-white mb-3">Redactors List</h1>
+  </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+  <section class="pb-5">
+    <form method="get" action="" id="search-form">
+      <div class="container">
+        <div class="row text-center py-2 mt-3">
+          <div class="col-lg-5 mx-auto">
+            <div class="input-group input-group-dynamic mb-4">
+              <span class="input-group-text"><i class="material-icons opacity-6 me-2 text-lg">search</i></span>
+              <input
+                class="search-input form-control text-md"
+                placeholder="Search"
+                type="text"
+                name="query"
+                value="{{ request.GET.query }}"
+              >
+
+            </div>
+            </div>
+          </div>
+        </div>
+    </form>
+
+  <!-- Redactors Table -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        {% if redactor_list %}
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Username</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">First name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Last name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Email</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Years of experience</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for redactor in redactor_list %}
+                  <tr>
+                    <td class="text-center">
+                      <a href="{% url 'home:redactor-detail' pk=redactor.id %}" class="text-dark font-weight-bold">
+                        {{ redactor.username|default:"-" }}
+                      </a>
+                    </td>
+                    <td class="text-center">{{ redactor.first_name|default:"-" }}</td>
+                    <td class="text-center">{{ redactor.last_name|default:"-" }}</td>
+                    <td class="text-center">{{ redactor.email|default:"-" }}</td>
+                    <td class="text-center">{{ redactor.years_of_experience|default:"-" }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="alert text-center" role="alert">
+            There are no redactors.
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+  {% include "includes/pagination.html" %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+  const input = document.getElementById('search-input');
+  const form = document.getElementById('search-form');
+  const tableBody = document.getElementById('table-body');
+  let timer;
+
+  input.addEventListener('input', function () {
+    clearTimeout(timer); // Якщо користувач ще вводить, не шлемо запит
+    timer = setTimeout(() => {
+      const query = input.value;
+
+      fetch(`?query=${encodeURIComponent(query)}`, {
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      })
+      .then(res => res.json())
+      .then(data => {
+        tableBody.innerHTML = data.html; // Оновлюємо вміст таблиці
+      });
+    }, 300); // 300 мс затримка, щоб не відправляти запит на кожен символ
+  });
+
+  // Забороняємо стандартне перезавантаження при Enter
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+  });
+</script>
+{% endblock javascripts %}

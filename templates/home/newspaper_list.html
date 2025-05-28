@@ -1,0 +1,79 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Newspaper list{% endblock %}
+
+{% block content %}
+<header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-newspaper-list.jpg')">
+  <div class="container text-white text-center mt-5">
+    <h1 class="text-white mb-3">Newspaper List</h1>
+  </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+  <section class="pb-5">
+    <form method="get" action="" id="search-form">
+          <div class="container">
+            <div class="row text-center py-2 mt-3">
+              <div class="col-lg-5 mx-auto">
+                <div class="input-group input-group-dynamic mb-4">
+                  <span class="input-group-text"><i class="material-icons opacity-6 me-2 text-lg">search</i></span>
+                  <input
+                    class="search-input form-control text-md"
+                    placeholder="Search"
+                    type="text"
+                    name="query"
+                    value="{{ request.GET.query }}"
+                  >
+                </div>
+                </div>
+              </div>
+            </div>
+        </form>
+
+  <!-- Newspapers Table -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {% if newspaper_list %}
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Title</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Topic</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Published Date</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">Redactors</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for newspaper in newspaper_list %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'home:newspaper-detail' pk=newspaper.id %}" class="text-dark font-weight-bold">
+                        {{ newspaper.title }}
+                      </a>
+                    </td>
+                    <td class="text-center">{{ newspaper.topic }}</td>
+                    <td class="text-center">{{ newspaper.published_date }}</td>
+                    <td class="text-center">
+                      {% for redactor in newspaper.redactor.all %}
+                      {{ redactor }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="alert text-center" role="alert">
+            There are no newspapers.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% include "includes/pagination.html" %}
+  </div>
+{% endblock %}

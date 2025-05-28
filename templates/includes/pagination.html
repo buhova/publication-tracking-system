@@ -1,0 +1,43 @@
+{% if page_obj.has_other_pages %}
+<div class="row text-center py-2">
+  <div class="col-4 mx-auto">
+    <ul class="pagination pagination-primary" style="justify-content: center">
+
+      <!-- Button prev" -->
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page= {{ page_obj.previous_page_number }}">
+            <span aria-hidden="true">
+              <i class="material-icons opacity-6 text-lg">arrow_back</i>
+            </span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link"><i class="material-icons opacity-6 text-lg">arrow_back</i></span></li>
+      {% endif %}
+
+      <!-- Page numbers -->
+      {% for i in page_obj.paginator.page_range %}
+        {% if i >= page_obj.number|add:"-2" and i <= page_obj.number|add:"2" %}
+          <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Button next -->
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page= {{ page_obj.next_page_number }}" aria-label="Last">
+            <span aria-hidden="true">
+              <i class="material-icons opacity-6 text-lg">arrow_forward</i>
+            </span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link"><i class="material-icons opacity-6 text-lg">arrow_forward</i></span></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,71 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block body_bg %}
+  style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-topic-form.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;"
+{% endblock %}
+
+{% block content %}
+<main class="mt-6 pt-6">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+
+        <form method="post" novalidate class="card z-index-0 fadeIn3 fadeInBottom border border-light shadow-blur">
+          {% csrf_token %}
+
+        <!-- Card header -->
+          <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3">
+                <h4 class="text-white font-weight-bolder text-center mb-0">
+                  {% if object %}Update{% else %}Create{% endif %} Topic
+                </h4>
+              </div>
+            </div>
+
+            <!-- Поля -->
+            <div class="card-body p-4">
+              <div class="row align-items-center g-3">
+                <!-- Інпут -->
+                <div class="col-md-8">
+                  <div class="input-group input-group-outline {% if form.name.value %}is-filled{% endif %}">
+                    <label for="id_name" class="form-label">Name</label>
+                    <input type="text"
+                           name="name"
+                           id="id_name"
+                           class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                           value="{{ form.name.value|default_if_none:'' }}"
+                           required>
+                  </div>
+                  <div style="min-height: 1.2rem;">
+                    {% for error in form.name.errors %}
+                      <div class="invalid-feedback d-block text-danger small ms-1 mt-1">
+                        {{ error }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="col-md-4 d-flex justify-content-end align-items-center gap-2">
+                  <a href="{% url 'home:topic-list' %}" class="btn btn-secondary">
+                    Cancel
+                  </a>
+                  <button type="submit" class="btn bg-gradient-primary">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

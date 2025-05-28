@@ -1,0 +1,99 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Redactor Profile{% endblock %}
+
+{% block content %}
+<!-- Header with Redactor Info -->
+<header class="page-header min-vh-50" style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-redactor-detail.jpg')">
+  <div class="container text-white text-center mt-5">
+    <h1 class="text-white mb-2">{{ redactor_detail.first_name }} {{ redactor_detail.last_name }}</h1>
+    <p class="mb-0">{{ redactor_detail.email }}</p>
+    {% if request.user == redactor_detail %}
+    <div class="mt-3">
+      <a href="{% url 'update-user' %}" class="btn btn-outline-light me-2">
+        <i class="material-icons">edit</i> Edit Profile
+      </a>
+      <a href="{% url 'delete-user' %}" class="btn btn-outline-light">
+        <i class="material-icons">delete</i> Delete Account
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<section class="py-5">
+
+<!-- Newspapers Table -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+      <div class="d-flex align-items-center mb-4 gap-4 ">
+            {% if request.user == redactor_detail %}
+              <h2>My newspapers</h2>
+              <a href="{% url 'home:newspaper-create' %}" class="btn btn-outline-success mb-0 align-items-center">
+                <i class="material-icons">add</i>Create new
+              </a>
+              <a href="{% url 'home:topic-list' %}" class="btn btn-outline-info mb-0 align-items-center">
+                <i class="material-icons">settings</i>Customize topics
+              </a>
+            {% endif %}
+          </div>
+        {% if redactor_detail.newspapers.all %}
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Topic</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Published Date</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Redactors</th>
+                  {% if request.user == redactor_detail %}
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delete</th>
+                  {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for newspaper in redactor_detail.newspapers.all %}
+                <tr>
+                  <td>
+                    <a href="{% url 'home:newspaper-detail' pk=newspaper.id %}" class="text-dark font-weight-bold">
+                      {{ newspaper.title }}
+                    </a>
+                  </td>
+                  <td>{{ newspaper.topic }}</td>
+                  <td>{{ newspaper.published_date }}</td>
+                  <td>
+                    {% for red in newspaper.redactor.all %}
+                      {{ red }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                  </td>
+                  {% if request.user == redactor_detail %}
+                  <td>
+                    <a href="{% url 'home:newspaper-update' pk=newspaper.id %}" class="btn btn-outline-warning mb-0">
+                      <i class="material-icons">edit</i> Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{% url 'home:newspaper-delete' pk=newspaper.id %}" class="btn btn-outline-danger mb-0">
+                      <i class="material-icons">delete</i> Delete
+                    </a>
+                  </td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="alert py-5 text-center mt-4" role="alert">
+            No newspapers found.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}
