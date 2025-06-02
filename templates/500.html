@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}Server Error{% endblock %}
+
+{% block body_bg %}
+  style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-error.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;"
+{% endblock %}
+
+
+{% block content %}
+<section class="py-6 mt-7 text-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="display-1 text-danger text-gradient">500</h1>
+        <h2 class="text-white">Something went wrong</h2>
+        <p class="lead text-light">
+          Oops! Something broke on our side. Please try again later.
+        </p>
+        <a href="{% url 'home:index' %}" class="btn bg-gradient-primary mt-3">
+          <i class="material-icons me-1">home</i> Return Home
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

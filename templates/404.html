@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block body_bg %}
+  style="background-image: url('{{ ASSETS_ROOT }}/assets/img/bg-error.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;"
+{% endblock %}
+
+{% block content %}
+<section class="py-6 mt-7 text-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="display-1 text-gradient text-danger">404</h1>
+        <h2 class="text-dark">Page Not Found</h2>
+        <p class="lead text-secondary mb-4">Sorry, the page you’re looking for doesn’t exist.</p>
+        <a href="{% url 'home:index' %}" class="btn bg-gradient-primary mt-3">
+          <i class="material-icons me-1">home</i> Return Home
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
