@@ -1,0 +1,295 @@
+[
+  {
+    "model": "publication.topic",
+    "pk": 3,
+    "fields": {
+      "name": "Art"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 5,
+    "fields": {
+      "name": "Business"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 6,
+    "fields": {
+      "name": "Self-building"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 7,
+    "fields": {
+      "name": "Fiction"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 8,
+    "fields": {
+      "name": "Nature"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 17,
+    "fields": {
+      "name": "City Life"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 18,
+    "fields": {
+      "name": "Technology"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 19,
+    "fields": {
+      "name": "Environment"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 20,
+    "fields": {
+      "name": "Space Exploration"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 21,
+    "fields": {
+      "name": "Culture"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 22,
+    "fields": {
+      "name": "Health"
+    }
+  },
+  {
+    "model": "publication.topic",
+    "pk": 23,
+    "fields": {
+      "name": "Economics"
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$Jg8gLWpxmJ6GeoaG6RvCnL$6O14YKwHpEVRfxn2L1fG9E4doJQlqwvJrttvEImxdTw=",
+      "last_login": "2025-05-21T16:14:42.629Z",
+      "is_superuser": true,
+      "username": "admin.user",
+      "first_name": "Olena",
+      "last_name": "Bukhova",
+      "email": "elena.bukhova2005@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-04-02T16:00:30.080Z",
+      "years_of_experience": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 2,
+    "fields": {
+      "password": "1qazcde3",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "tim_bush",
+      "first_name": "Tim",
+      "last_name": "Bush",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-18T16:02:35Z",
+      "years_of_experience": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 3,
+    "fields": {
+      "password": "1qazcde3",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mary_jane",
+      "first_name": "Mary",
+      "last_name": "Jane",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-18T16:04:07Z",
+      "years_of_experience": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 12,
+    "fields": {
+      "password": "GreenCity2025",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "clara.wren",
+      "first_name": "Clara",
+      "last_name": "Wren",
+      "email": "clara.wren@urbanpress.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-05-21T12:51:06Z",
+      "years_of_experience": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 13,
+    "fields": {
+      "password": "QuantumSecure#88",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jmorales.tech",
+      "first_name": "Javier",
+      "last_name": "Morales",
+      "email": "javier.morales@futureinsight.net",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-05-21T12:53:02Z",
+      "years_of_experience": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.redactor",
+    "pk": 14,
+    "fields": {
+      "password": "CraftedVoices_19",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "amina.yusuf.global",
+      "first_name": "Amina",
+      "last_name": "Yusuf",
+      "email": "amina.yusuf@culturereport.org",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-05-21T12:53:33Z",
+      "years_of_experience": 5,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 35,
+    "fields": {
+      "title": "Urban Pulse",
+      "content": "City life is undergoing a fundamental transformation. As remote work becomes the norm, urban planners are rethinking the purpose and layout of cities. In Amsterdam, several districts have adopted a ôcar-freeö policy, turning former roads into community gardens and pedestrian zones.\r\n\r\nThe concept of the ô15-minute city,ö where all essential servicesùschools, shops, parks, clinicsùare within a 15-minute walk or bike ride, is gaining traction across Europe. Residents report higher satisfaction, reduced stress, and a stronger sense of community. Experts believe this shift could define urban development for the next generation.",
+      "published_date": "2025-05-21T12:46:19.263Z",
+      "topic": 17,
+      "redactor": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 36,
+    "fields": {
+      "title": "The Tech Frontier",
+      "content": "A Berlin-based startup, Qrypta, has unveiled the worldÆs first messaging app powered by quantum encryption. The app uses quantum key distribution (QKD) to generate encryption keys that cannot be intercepted or replicated, offering a new level of digital security.\r\n\r\nUnlike traditional encryption, which can be cracked with enough computing power, QryptaÆs method is based on the laws of quantum physics. Once the key is observed, it changesùmaking eavesdropping impossible. Governments and major corporations are already testing the technology. If successful, this could redefine how we protect personal and national data in the coming decades.",
+      "published_date": "2025-05-21T12:46:49.480Z",
+      "topic": 18,
+      "redactor": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 37,
+    "fields": {
+      "title": "Voices of the Soil",
+      "content": "Farmers across Europe are turning to regenerative agriculture, a system that goes beyond sustainability by actively restoring ecosystems. Techniques like cover cropping, composting, rotational grazing, and minimizing soil disturbance are helping to rebuild soil organic matter and biodiversity.\r\n\r\nIn France and Italy, government programs now offer subsidies to farmers who adopt regenerative practices. Studies show that these farms not only capture more carbon from the atmosphere, but also yield more resilient cropsùespecially under climate stress. One farmer from Tuscany says, ôWe are not just growing food anymore. We are healing the land.ö",
+      "published_date": "2025-05-21T12:47:21.674Z",
+      "topic": 19,
+      "redactor": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 38,
+    "fields": {
+      "title": "New Horizons Daily",
+      "content": "NASA's Perseverance rover has made a groundbreaking discovery: ancient sedimentary rocks on Mars contain microstructures consistent with fossilized microbial life. The rover used its onboard instruments to analyze the composition and age of the samples, revealing they may be over 3.5 billion years old.\r\n\r\nThe rocks will be part of the Mars Sample Return Mission in 2033, where scientists will study them in Earth-based laboratories. This marks the closest humanity has come to proving extraterrestrial life once existed. The discovery could reshape our understanding of lifeÆs potential across the universe.",
+      "published_date": "2025-05-21T12:47:49.732Z",
+      "topic": 20,
+      "redactor": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 39,
+    "fields": {
+      "title": "The Global Thread",
+      "content": "Across the world, Gen Z is leading a surprising cultural revival: traditional crafts. From embroidery and ceramics to woodcarving and weaving, young people are rediscovering and reinterpreting ancestral skills. Social media platforms like TikTok and Instagram have become hubs for artisans to share tutorials, sell products, and build global communities.\r\n\r\nThese crafts, once at risk of disappearing, are now at the center of thriving microbusinesses. In Kyoto, a 22-year-old artist now exports handmade washi paper globally. In Mexico, young women are blending traditional textile patterns with contemporary fashion. This movement is not just about aestheticsùitÆs about reconnecting with roots and resisting mass production.",
+      "published_date": "2025-05-21T12:49:05.951Z",
+      "topic": 21,
+      "redactor": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 40,
+    "fields": {
+      "title": "HealthScope Weekly",
+      "content": "Researchers have developed a revolutionary blood test that can detect up to 50 types of cancer in their earliest stages. The test, known as a multi-cancer early detection (MCED) test, analyzes tiny fragments of tumor DNA that circulate in the bloodstreamùoften before symptoms appear.\r\n\r\nEarly results from clinical trials are promising, with detection accuracy as high as 90% for some cancers. Doctors hope the test will complement traditional screenings like mammograms and colonoscopies. If widely adopted, it could lead to earlier interventions and save millions of lives annually.",
+      "published_date": "2025-05-21T12:49:31.367Z",
+      "topic": 22,
+      "redactor": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "publication.newspaper",
+    "pk": 41,
+    "fields": {
+      "title": "EconoMirror",
+      "content": "After years of global inflation, signs of relief are finally emerging. Supply chains have stabilized, energy prices are falling, and central banks are slowing down rate hikes. However, economists urge caution: inflation may be slowing, but itÆs not over.\r\n\r\nIn the US and Europe, interest rates are expected to remain high until at least late 2025 to keep inflation in check. Meanwhile, workers are pushing for higher wages to match past price increases. If wage growth stagnates, experts warn, household purchasing power could decline despite ôtechnicalö improvements in the economy.",
+      "published_date": "2025-05-21T12:49:55.287Z",
+      "topic": 23,
+      "redactor": [
+        1,
+        13
+      ]
+    }
+  }
+]
