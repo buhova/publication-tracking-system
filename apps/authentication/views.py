@@ -74,7 +74,7 @@ def update_user_view(request):
         if form.is_valid():
             form.save()
             return redirect(reverse_lazy("home:redactor-detail", kwargs={"pk": user.pk}))
-        # Якщо форма неправильна — лишаємось на сторінці з помилками
+        # If the form is incorrect, we are left on the error page.
 
     return render(request, "accounts/update_profile.html", {"form": form})
 
